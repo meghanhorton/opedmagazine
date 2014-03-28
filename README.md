@@ -16,43 +16,64 @@
   <li>Google Analytics tracking on each link, generated manually, through PHP or through jQuery</li>
   <li>PHP created modals for commentary
     <h4>includes/functions.php</h4>
-    <code>
-    create_modal($id,$info)<br/>
-    // $id    = data-target specified in text<br/>
-    // $info  = content of the modal
-    </code>
+    <pre>
+    create_modal($id,$info)
+       // $id    = data-target specified in text
+       // $info  = content of the modal
+    
+    add_navigation($page){
+      switch($page){
+        // Add another line to specify the opposition. For instance, if you create page "7" and the opposition is page "8", create the following:
+        case 7: $sides = 8; break;
+        case 8: $sides = 7; break;
+      }
+      
+      // Randomizes which page in a category the user views next.
+      $category = rand(7,8);
+      
+      // Add the new category to the dropdown menu
+      &lt;ul class="dropdown-menu"&gt;
+        ...
+        &lt;li&gt; 
+          &lt;a ... href="?s='.$category.'"&gt;Category Name&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt; 
+        
+    }
+    </pre>
+    <h4>index.php</h4>
+    <p>Provides a wrapper for each story.
+    <pre>
+      add_navigation($page); // Refers to functions.php
+      ...
+      foreach($modal as $key=>value){
+        // Uses functions.php to create modal, with variables specified at the bottom of each stories/#.php file
+        echo create_modal($key,$modal[$key]);
+      }
+    </pre>
     <h4>stories/0.php</h4>
-    <code>
-    // Landing Page, format differs from all other pages.
-    </code>
+    <p>Customized for display on landing page.</p>
     <h4>stories/#.php</h4>
     <p>Includes HTML, with $modal[] PHP at the bottom</p>
     <pre>
       &lt;script&gt;var page = #;&lt;/script&gt;
-      <br/>
+      
       &lt;h2&gt;Topic&lt;/h2&gt;
-      <br/>
       &lt;div class="row story topic#"&gt;
-      <br/>
-      &lt;div class="col-sm-12"&gt;
-      <br/>
-      ...
-      <br/>
-      &lt;a class="highlight" <b>data-toggle="modal"</b> data-target="<i>#1</i>"&gt;Link&lt;/a&gt;
-      <br/>
-      ...
-      <br/>
+        &lt;div class="col-sm-12"&gt;
+        ...
+          &lt;a class="highlight" <b>data-toggle="modal"</b> data-target="<i>#1</i>"&gt;Link&lt;/a&gt;
+        ...
+      
+        &lt;/div&gt;
       &lt;/div&gt;
-      <br/>
-      &lt;/div&gt;
-      <br/>
-      <br/>
-      &lt;?php <br/>
-        $modal[<i>1</i>] = '<br/>
+      
+      &lt;?php
+      $modal[<i>1</i>] = '
         &lt;h3&gt;Title&lt;/h3&gt;
-        <br/>&lt;p&gt;Response&lt;/p&gt;';<br/>
+        &lt;p&gt;Response&lt;/p&gt;';
         ....
-        <br/>
+        
       ?&gt;
     </pre>
   
