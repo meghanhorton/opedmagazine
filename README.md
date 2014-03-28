@@ -86,3 +86,14 @@
   <li><b>Languages:</b> PHP, HTML, CSS, jQuery</li>
   <li><b>Style Framework:</b> Bootstrap 3.1.1</li>
 </ul>
+
+<h3>Resources</h3>
+
+<ul>
+  <li><b>Languages:</b> PHP, HTML, CSS, jQuery</li>
+  <li><b>Style Framework:</b> Bootstrap 3.1.1</li>
+</ul>
+
+<h3>Demo</h3>
+
+<p>The original, live instance of this site can be viewed at <a href="http://oped.reesenewslab.org">http://oped.reesenewslab.org</a></p>
